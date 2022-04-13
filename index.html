@@ -3,12 +3,12 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Yiddish Alphabet Basic Keyboard</title>
+    <title>Judeo-Arabic Alphabet Basic Keyboard</title>
     <style>
 
         /* The page uses a serif font throughout. */
         * {
-            font-family: serif;
+            font-family: arial, sans-serif;
         }
 
 
@@ -36,7 +36,9 @@
             border-top-right-radius: 0.0em;
             
             top: 0px;
-            height: 33vh
+            height: 33vh;
+
+            line-height: 1.7;
         }
 
         h2 {
@@ -51,6 +53,7 @@
         .alphabet {}
         .whitespace {}
         .combinations {}
+        .finals {}
         */
     </style>
 
@@ -61,50 +64,44 @@
 
     <script>
 
-        // A variable that defines the Yiddish alphabet.
+        // A variable that defines the Hebrew alphabet for Judeo-Arabic.
         // Each character is defined as the 
         // text that it will write in the text box,
         // the buttonLabel which is the text that is written on the button
         // and the description, which is what a screenreader would describe
         // the button as.
-        var yiddishAlphabet = [
-            { text: "\u05D0", buttonLabel: "\u05D0 shtumer alef", description: "shtumer alef" },
-            { text: "\u05D0\u05B7", buttonLabel: "\u05D0\u05B7 pasekh alef", description: "pasekh alef" },
-            { text: "\u05D0\u05B8", buttonLabel: "\u05D0\u05B8 komets alef", description: "komets alef" },
-            { text: "\u05D1", buttonLabel: "\u05D1 beys", description: "beys" },
-            { text: "\u05D1\u05BF", buttonLabel: "\u05D1\u05BF veys", description: "veys" },
-            { text: "\u05D2", buttonLabel: "\u05D2 giml", description: "giml" },
-            { text: "\u05D3", buttonLabel: "\u05D3 daled", description: "daled" },
-            { text: "\u05D4", buttonLabel: "\u05D4 hey", description: "hey" },
-            { text: "\u05D5", buttonLabel: "\u05D5 vov", description: "vov" },
-            { text: "\u05D5\u05BC", buttonLabel: "\u05D5\u05BC melupm vov", description: "melupm vov" },
-            { text: "\u05D6", buttonLabel: "\u05D6 zayen", description: "zayen" },
-            { text: "\u05D7", buttonLabel: "\u05D7 khes", description: "khes" },
-            { text: "\u05D8", buttonLabel: "\u05D8 tes", description: "tes" },
-            { text: "\u05D9", buttonLabel: "\u05D9 yud", description: "yud" },
-            { text: "\u05DB\u05BC", buttonLabel: "\u05DB\u05BC kof", description: "kof" },
-            { text: "\u05DB", buttonLabel: "\u05DB khof", description: "khof" },
-            { text: "\u05DA", buttonLabel: "\u05DA langer khof", description: "langer khof" },
-            { text: "\u05DC", buttonLabel: "\u05DC lamed", description: "lamed" },
-            { text: "\u05DE", buttonLabel: "\u05DE mem", description: "mem" },
-            { text: "\u05DD", buttonLabel: "\u05DD shlos mem", description: "shlos mem" },
-            { text: "\u05E0", buttonLabel: "\u05E0 nun", description: "nun" },
-            { text: "\u05DF", buttonLabel: "\u05DF langer nun", description: "langer nun" },
-            { text: "\u05E1", buttonLabel: "\u05E1 samekh", description: "samekh" },
-            { text: "\u05E2", buttonLabel: "\u05E2 ayen", description: "ayen" },
-            { text: "\u05E4\u05BC", buttonLabel: "\u05E4\u05BC pey", description: "pey" },
-            { text: "\u05E4\u05BF", buttonLabel: "\u05E4\u05BF fey", description: "fey" },
-            { text: "\u05E3", buttonLabel: "\u05E3 langer fey", description: "langer fey" },
-            { text: "\u05E6", buttonLabel: "\u05E6 tsadek", description: "tsadek" },
-            { text: "\u05E5", buttonLabel: "\u05E5 langer tsadek", description: "langer tsadek" },
-            { text: "\u05E7", buttonLabel: "\u05E7 kuf", description: "kuf" },
-            { text: "\u05E8", buttonLabel: "\u05E8 reysh", description: "reysh" },
-            { text: "\u05E9", buttonLabel: "\u05E9 shin", description: "shin" },
-            { text: "\u05E9\u05C2", buttonLabel: "\u05E9\u05C2 sin", description: "sin" },
-            { text: "\u05EA\u05BC", buttonLabel: "\u05EA\u05BC tof", description: "tof" },
-            { text: "\u05EA", buttonLabel: "\u05EA sof", description: "sof" },
+        var alphabet = [
+            { text: "\u05D0", buttonLabel: "\u05D0 Alef \u0627 Alif", description: "Alef" },
+            { text: "\u05D1", buttonLabel: "\u05D1 Bet \u0628 Baa", description: "Bet" },
+            { text: "\u05D2", buttonLabel: "\u05D2 Gimel \u062C Jiim", description: "Gimel" },
+            { text: "\u05D3", buttonLabel: "\u05D3 Dalet \u062F Daal", description: "Dalet" },
+            { text: "\u05D4", buttonLabel: "\u05D4 He \u0647 haa", description: "Hey" },
+            { text: "\u05D5", buttonLabel: "\u05D5 Vav \u0648 Waaw", description: "vav" },
+            { text: "\u05D6", buttonLabel: "\u05D6 Zayin \u0632 Zayn/Zayy/Zaa", description: "zayen" },
+            { text: "\u05D7", buttonLabel: "\u05D7 Chet \u062D Haa", description: "khet" },
+            { text: "\u05D8", buttonLabel: "\u05D8 Tet \u0637 Taa", description: "tet" },
+            { text: "\u05D9", buttonLabel: "\u05D9 Yod \u064A Yaa", description: "yod" },
+            { text: "\u05DB\u05BC", buttonLabel: "\u05DB\u05BC Kaf \u0643 Kaaf", description: "kaf" },
+            { text: "\u05DB", buttonLabel: "\u05DB Khaf", description: "khaf" },
+            { text: "\u05DC", buttonLabel: "\u05DC Lamed \u0644 Laam", description: "lamed" },
+            { text: "\u05DE", buttonLabel: "\u05DE Mem \u0645 Miim", description: "mem" },
+            { text: "\u05E0", buttonLabel: "\u05E0 Nun \u0646 Nuun", description: "nun" },
+            { text: "\u05E1", buttonLabel: "\u05E1 Samekh \u0633 Siin", description: "samekh" }, 
+            // I chose to spell Samekh with "kh here" even though the website, I am basing
+            // it on is different.
+            
+            { text: "\u05E2", buttonLabel: "\u05E2 Ayin \u0639 Ayn", description: "ayin" },
+            { text: "\u05E4\u05BC", buttonLabel: "\u05E4\u05BC Peh ", description: "pey" },
+            { text: "\u05E4", buttonLabel: "\u05E4 Feh \u0641 Faa", description: "fey" },
+            { text: "\u05E6", buttonLabel: "\u05E6 Tsadeh \u0635 Saad", description: "tsadi" },
+            { text: "\u05E7", buttonLabel: "\u05E7 Qof \u0642 Qaaf", description: "kuf" },
+            { text: "\u05E8", buttonLabel: "\u05E8 Resh \u0631 Raa", description: "resh" },
+            { text: "\u05E9", buttonLabel: "\u05E9 Shin/Sin \u0634 Shiin", description: "shin or sin" },
+            { text: "\u05E9\u05C1", buttonLabel: "\u05E9\u05C1 Shin \u0634 Shiin", description: "shin" },
+            { text: "\u05E9\u05C2", buttonLabel: "\u05E9\u05C2 Sin", description: "sin" },
+            { text: "\u05EA", buttonLabel: "\u05EA Tav \u062A taa", description: "tav" },
         ];
-
+        
         // Whitespace characters are characters that require no ink to write
         // when written traditionally on paper. In essence they are spaces between
         // words or lines.
@@ -113,9 +110,9 @@
             { text: "\n", buttonLabel: "[start new line]", description: "start new line" },
             { text: "\t", buttonLabel: "[indent]", description: "indent" },
         ];
-
+        
         // Punctuation characters.
-        // Note, Yiddish is written in Hebrew script. And
+        // Note, in the Hebrew script,
         // Geresh roughly corresponds to single quote
         // in Latin script. Gershayim roughly corresponds to
         // double quote. But they have extra uses that
@@ -126,32 +123,38 @@
             { text: "?", buttonLabel: "?", description: "?" },
             { text: ";", buttonLabel: ";", description: ";" },
             { text: ":", buttonLabel: ":", description: ":" },
-            { text: "\u05F3", buttonLabel: "\u05F3 geresh", description: "\u05F3 geresh" },
-            { text: "\u05F4", buttonLabel: "\u05F4 gershayim", description: "\u05F4 gershayim" },
+            { text: "\u05F3", buttonLabel: "\u05F3 geresh", description: "geresh" },
+            { text: "\u05F4", buttonLabel: "\u05F4 gershayim", description: "gershayim" },
         ];
-
-        // The following are combinations of letters.
-        // Mathematically speaking these are sequences of letters.
-        // Technically, we do not need these buttons. Every letter combination
-        // here could be written by pressing two distinct buttons above,
-        // except for the last one.
-        // However the buttons on this page are based directly on yivo.org/Yiddish-Alphabet
-        // and I would rather follow their description as closely as possible.
-        // For those who are linguists, you may notice that a few of these are
-        // ways of writing affricates and dipthongs in Yiddish. Since linguistically
-        // people perceive the group of sounds these letter combinations represent as a single
-        // sound, it is quite reasonable to give them their own button.
+        
+        // The following are combinations of letters with diacritics.
+        // Some of these are tricky to type correctly on a keyboard.
         var letterCombinations = [
-            { text: "\u05D5\u05D5", buttonLabel: "\u05D5\u05D5", description: "\u05D5\u05D5" },
-            { text: "\u05D6\u05E9", buttonLabel: "\u05D6\u05E9", description: "\u05D6\u05E9" },
-            { text: "\u05D3\u05D6\u05E9", buttonLabel: "\u05D3\u05D6\u05E9", description: "\u05D3\u05D6\u05E9" },
-            { text: "\u05D8\u05E9", buttonLabel: "\u05D8\u05E9", description: "\u05D8\u05E9" },
-            { text: "\u05D5\u05E9", buttonLabel: "\u05D5\u05E9", description: "\u05D5\u05E9" },
-            { text: "\u05E9\u05E9", buttonLabel: "\u05E9\u05E9", description: "\u05E9\u05E9" },
-            { text: "\u05F2\u05B7", buttonLabel: "\u05F2\u05B7", description: "\u05F2\u05B7" }
+            { text: "\u05D5\u05BC", buttonLabel: "\u05D5\u05BC vav with mappiq", description: "vav with mappiq" },
+            { text: "\u05D5\u05B9", buttonLabel: "\uFB4B vav with holam", description: "vav with holam" },
+            { text: "\u05D5\u05BA", buttonLabel: "\u05D5\u05BA vav with holam haser", description: "vav with holam haser" },
+            { text: "\u05D2\u05C4", buttonLabel: "\u05D2\u05C4 Gimel with dot above \u062C Jiim", description: "Gimel with dot above for Jiim" },
+            { text: "\u05D3\u05C4", buttonLabel: "\u05D3\u05C4 Dalet with dot above \u0630 Dhaal", description: "Dalet with dot above for Dhaal" },
+            { text: "\u05D7\u05C4", buttonLabel: "\u05D7\u05C4 Chet with dot above \u062E khaa", description: "chet with dot above for khaa" },
+            { text: "\u05D8\u05C4", buttonLabel: "\u05D8\u05C4 Tet with dot above \u0638 Dhaa", description: "tet with dot above for dhaa/zaa" },
+            { text: "\u05E2\u05C4", buttonLabel: "\u05E2\u05C4 Ayin with dot above \u063A ghayn", description: "ayn with dot above for ghayn" },
+            { text: "\u05E6\u05C4", buttonLabel: "\u05E6\u05C4 Tsadeh with dot above \u0636 Daad", description: "tsadi with dot above for daad" },
+            { text: "\u05EA\u05C4", buttonLabel: "\u05EA\u05C4 Tav with dot above \u062B thaa", description: "tav with dot above for thaa" },
+
         ];
+        
+        
+        var finalCharacters = [
+            { text: "\u05DA", buttonLabel: "\u05DA Khaf Sofit", description: "khaf sofit" },
+            { text: "\u05DA\u05BC", buttonLabel: "\u05DA\u05BC Kaf Sofit", description: "kaf sofit" },
+            { text: "\u05DD", buttonLabel: "\u05DD Mem Sofit", description: "mem sofit" },
+            { text: "\u05DF", buttonLabel: "\u05DF Nun Sofit", description: "nun sofit" },
+            { text: "\u05E3", buttonLabel: "\u05E3 Feh Sofit", description: "feh sofit" },
+            { text: "\u05E3\u05BC", buttonLabel: "\u05E3\u05BC Peh Sofit", description: "peh sofit" },
+            { text: "\u05E5", buttonLabel: "\u05E5 Tsadeh Sofit", description: "tsadi sofit" },
 
-
+        ];
+        
         // This function returns a function that places text
         // at the end of the text area.
         function onClickButtonForWriting(textToWrite) {
@@ -218,10 +221,20 @@
             alphabetDiv.className = "alphabet";
             root.appendChild(createHeading(2, "Alphabet"))
 
-            for (var i = 0; i < yiddishAlphabet.length; i++) {
-                alphabetDiv.appendChild(createButtonForWriting(yiddishAlphabet[i]));
+            for (var i = 0; i < alphabet.length; i++) {
+                alphabetDiv.appendChild(createButtonForWriting(alphabet[i]));
             }
             root.appendChild(alphabetDiv);
+
+            var finalCharactersDiv = document.createElement("div");
+            root.appendChild(createHeading(2, "Final Characters"))
+
+            finalCharactersDiv.className = "finals";
+            for (var i = 0; i < finalCharacters.length; i++) {
+                finalCharactersDiv.appendChild(createButtonForWriting(finalCharacters[i]));
+            }
+            root.appendChild(finalCharactersDiv);
+
 
             var combinationsDiv = document.createElement("div");
             root.appendChild(createHeading(2, "Letter Combinations"))
@@ -233,10 +246,10 @@
             root.appendChild(combinationsDiv);
         }
 
-        // Create heading for the whole Yiddish Alphabet Basic keyboard
+        // Create heading for the whole Hebrew Alphabet Basic keyboard
         // application.
         function createAppHeading() {
-            var heading1 = createHeading("1", "Yiddish Alphabet Basic Keyboard");
+            var heading1 = createHeading("1", "Hebrew Alphabet Basic Keyboard");
             return heading1;
         }
 
@@ -248,8 +261,8 @@
             textArea.style = "width:95%";
             textArea.rows = 4;
 
-            // Set the text area language to Yiddish.
-            textArea.lang = "yi";
+            // Set the text area language to Hebrew.
+            textArea.lang = "he";
 
             var placeholderText = "Text you type with buttons below gets added to the end of the text in this text box";
             textArea.ariaLabel = placeholderText;
@@ -262,8 +275,8 @@
         function createFooter() {
             var footer = document.createElement("footer");
             var link = document.createElement("a");
-            link.href = "https://yivo.org/Yiddish-Alphabet";
-            var linkText = document.createTextNode("About the Yiddish Alef-BEYS (ALPHABET)");
+            link.href = "https://www.jewishvirtuallibrary.org/the-hebrew-alphabet-aleph-bet";
+            var linkText = document.createTextNode("The Hebrew Alphabet (Aleph-Bet)");
             link.appendChild(linkText);
             footer.appendChild(link);
             return footer;
@@ -280,7 +293,7 @@
 
 </body>
 <!-- Created by Elsanussi Mneina (he/him). You can contact me (Elsanussi Mneina) at grassdewmorning@gmail.com, mentioning this page)
-  This single page web application for typing Hebrew syllable by syllable was first released to the public on March 30, 2022 on GitHub under an MIT license.
+  This single page web application for typing Hebrew syllable by syllable was first released to the public (not released yet) on GitHub under an MIT license.
 https://github.com/elsanussi-s-mneina/hebrew-alphabet-syllabic-keyboard-html-js/
 Here is the LICENSE for this web application:
 MIT License
